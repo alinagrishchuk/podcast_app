@@ -41,7 +41,7 @@ has_many :episodes
  - thumbnail
  - mp3
  
- **User**
+**User**
   
 ## Pages 
 
