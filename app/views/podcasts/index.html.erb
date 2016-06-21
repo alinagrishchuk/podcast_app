@@ -1,0 +1,22 @@
+<div id="banner" class="podcasts_banner">
+  <h1>Discover new favorite podcast</h1>
+</div>
+<div id="podcasts" class="cf">
+  <div class="wrapper">
+    <ul>
+      <% @podcasts.each do |podcast| %>
+        <%= link_to podcast_path(podcast) do %>
+          <li>
+            <img src="assets/podcasts_banner-c519c5b630de481117831386b19f31a3b13bb0c41e7febe6c4445c3470f3a30a.jpg" alt="">
+            <div class="podcast_overview">
+              <h2><%= podcast.title %></h2>
+              <p class="episode_count">
+                1 episode
+              </p>
+            </div>
+          </li>
+       <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
