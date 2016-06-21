@@ -20,6 +20,7 @@
 - store assets on Amazon S3
 - Launch application live on Heroku
 
+
 ## Data 
 
 **Podcast**
@@ -40,9 +41,8 @@ has_many :episodes
  - podcast id
  - thumbnail
  - mp3
- 
-**User**
-  
+
+
 ## Pages 
 
  - Welcome Page (welcome#index)
