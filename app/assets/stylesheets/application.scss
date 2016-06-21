@@ -125,16 +125,16 @@ body {
 }
 
 .podcasts_banner {
-  background-image: url("podcasts_banner.jpg");
+  background-image: image_url("podcasts_banner.jpg");
   margin-bottom: 4rem;
 }
 
 .sign_up_banner {
-  background-image: url("sign_up_banner.jpg");
+  background-image: image_url("sign_up_banner.jpg");
 }
 
 .sign_in_banner {
-  background-image: url("sign_in_banner.jpg");
+  background-image: image_url("sign_in_banner.jpg");
 }
 
 .pagination:before,
