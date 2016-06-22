@@ -18,7 +18,10 @@ class EpisodesController < ApplicationController
   end
 
   def show
-    @episodes = Episode.where(podcast_id: @podcast).limit(6).reject { |e| e.id == @episode.id }
+    @episodes = Episode.where(podcast_id: @podcast)
+                       .where.not(id: @episode.id )
+                       .limit(6)
+                       .page(params[:page])
   end
 
   def edit
