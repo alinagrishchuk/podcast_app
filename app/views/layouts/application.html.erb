@@ -13,7 +13,7 @@
 <% elsif notice %>
   <p class="notice"><%= notice %></p>
 <% end %>
-<% unless current_page?(root_path) %>
+<% unless  "#{controller_name}##{action_name}".eql? "welcome#index" %>
     <%= render 'shared/header' %>
 <% end %>
 
