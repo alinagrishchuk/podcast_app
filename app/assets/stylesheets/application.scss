@@ -12,6 +12,9 @@ body {
   background: $white;
 }
 
+
+/******************************* layouts */
+
 .wrapper_wide {
   width: 90%;
   margin: 0 auto;
@@ -41,6 +44,25 @@ body {
   clear: both;
 }
 
+
+/******************************* components */
+
+/****************** alert */
+#alert_wrapper {
+  width: 100%;
+  position: absolute;
+  background: rgba($highlight, 0.7);
+  z-index: 1000;
+  p {
+    color: $white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 1.25rem;
+  }
+}
+
+/****************** buttons */
 .button {
   color: $white;
   text-decoration: none;
@@ -75,6 +97,41 @@ body {
   }
 }
 
+/****************** forms */
+#form {
+  padding: 3rem 3.5%;
+  background: $white;
+  border-radius: .35rem;
+  .title {
+    color: $dark;
+    text-align: center;
+  }
+}
+
+.field {
+  margin: .5rem 0 1.5rem 0;
+}
+
+input[type="email"], input[type="text"], input[type="password"], textarea {
+  width: 100%;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  background: $light;
+  border: 1px solid darken($light, 5%);
+  border-radius: .35rem;
+  margin-top: .5rem;
+}
+
+input[type=”file”] {
+  margin-top: .5rem;
+}
+
+textarea {
+  height: 8rem;
+}
+
+
+/******************************* header */
 #main_header {
   color: $dark;
   background: $white;
@@ -109,6 +166,8 @@ body {
   }
 }
 
+
+/******************************* pages banners */
 #banner {
   background-repeat: no-repeat;
   background-size: cover;
@@ -137,79 +196,8 @@ body {
   background-image: image_url("sign_in_banner.jpg");
 }
 
-.pagination:before,
-.pagination:after {
-  content: " ";
-  display: table;
-}
-
-.pagination:after {
-  clear: both;
-}
-
-.pagination {
-  text-align: center;
-  margin: 2rem 0;
-  a, .previous_page, .current, .next_page {
-    padding: 0.75rem 1rem;
-    margin: 0 .25rem;
-    border-radius: .15rem;
-    line-height: 20px;
-    text-decoration: none;
-    background-color: $light;
-    font-weight: 700;
-    font-size: .7rem;
-    font-style: normal;
-    color: $dark;
-    &:hover {
-      background: $highlight;
-      color: $white;
-    }
-  }
-  .disabled {
-    color: #C0C0C0;
-    &:hover {
-      color: #C0C0C0;
-    }
-  }
-  .current {
-    background: $highlight;
-    color: $white;
-  }
-}
-
-#form {
-  padding: 3rem 3.5%;
-  background: $white;
-  border-radius: .35rem;
-  .title {
-    color: $dark;
-    text-align: center;
-  }
-}
-
-.field {
-  margin: .5rem 0 1.5rem 0;
-}
-
-input[type="email"], input[type="text"], input[type="password"], textarea {
-  width: 100%;
-  height: 2.5rem;
-  padding: .5rem 1rem;
-  background: $light;
-  border: 1px solid darken($light, 5%);
-  border-radius: .35rem;
-  margin-top: .5rem;
-}
-
-input[type=”file”] {
-  margin-top: .5rem;
-}
-
-textarea {
-  height: 8rem;
-}
 
 @import 'normalize';
 @import 'welcome';
 @import 'podcasts';
+@import "pagination";

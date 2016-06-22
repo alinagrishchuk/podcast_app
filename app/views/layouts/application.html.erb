@@ -8,16 +8,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if alert %>
-  <p class="alert"><%= alert %></p>
-<% elsif notice %>
-  <p class="notice"><%= notice %></p>
-<% end %>
-<% unless  "#{controller_name}##{action_name}".eql? "welcome#index" %>
-    <%= render 'shared/header' %>
-<% end %>
+  <%= render 'shared/flash_message' %>
+  <%= render 'shared/header' %>
+  <%= yield %>
 
-<%= yield %>
-
+  <script>
+    setTimeout(function () {
+      $("#alert_wrapper").fadeOut("slow", function () {
+        this.hide();
+      });
+    }, 1500)
+  </script>
 </body>
 </html>
