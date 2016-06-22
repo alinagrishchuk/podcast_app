@@ -1,0 +1,12 @@
+<header class="cf">
+  <div class="wrapper_wide">
+    <%= link_to "Podcasts app", root_path, id: "logo"%>
+    <nav>
+      <ul>
+        <li><%= link_to "Explore", podcasts_path %></li>
+        <li><%= link_to "Sign in", new_podcast_session_path %></li>
+        <li><%= link_to "Create a podcast", new_podcast_registration_path %></li>
+      </ul>
+    </nav>
+  </div>
+</header>

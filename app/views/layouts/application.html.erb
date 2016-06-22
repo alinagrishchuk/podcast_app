@@ -9,7 +9,12 @@
 </head>
 <body>
   <%= render 'shared/flash_message' %>
-  <%= render 'shared/header' %>
+
+  <!-- welcome#index use simple header  -->
+  <% unless current_page?(root_path) %>
+    <%= render 'shared/primary_header' %>
+  <% end %>
+
   <%= yield %>
 
   <script>

@@ -21,7 +21,7 @@ class EpisodesController < ApplicationController
     @episodes = Episode.where(podcast_id: @podcast)
                        .where.not(id: @episode.id )
                        .limit(6)
-                       .page(params[:page])
+                       .paginate(page: params[:page], per_page: 6)
   end
 
   def edit
@@ -29,7 +29,8 @@ class EpisodesController < ApplicationController
 
   def update
     if @episode.update episode_params
-      redirect_to podcast_episode_path(@podcast, @episode), notice: "Episode was succesfully updated!"
+      redirect_to podcast_episode_path(@podcast, @episode),
+                  notice: 'Episode was succesfully updated!'
     else
       render 'edit'
     end
@@ -56,7 +57,7 @@ class EpisodesController < ApplicationController
     def require_permission
       @podcast = Podcast.find(params[:podcast_id])
       if current_podcast != @podcast
-        redirect_to root_path, notice: "You are nnot allowed to do this!"
+        redirect_to root_path, notice: 'You are nnot allowed to do this!'
       end
     end
 end
