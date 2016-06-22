@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   devise_for :podcasts
   get 'welcome/index'
-  root 'welcome#index'
 
   resources :podcasts, only: [:index, :show ] do
     resources :episodes
   end
+
+  authenticated :podcast do
+    root 'podcasts#dashboard', as: "authenticated_root"
+  end
+
+  root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
