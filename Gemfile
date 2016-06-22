@@ -8,8 +8,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.4.1'
-gem "paperclip", "~> 4.2.1"
-
+gem 'paperclip', '~> 4.2.1'
+gem 'aws-sdk', '~> 2.0.33'
+gem "paperclip-dropbox", ">= 1.1.7"
+gem 'carrierwave'
+gem 'carrierwave-dropbox'
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
@@ -29,3 +32,5 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+gem 'figaro'

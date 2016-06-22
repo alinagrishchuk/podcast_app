@@ -15,3 +15,8 @@
 /log/*
 !/log/.keep
 /tmp
+Будет удалено public/system/podcasts/thumbnails/000/000/003/
+
+# Ignore application configuration
+/config/application.yml
+/config/dropbox.yml
