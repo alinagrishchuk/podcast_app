@@ -9,5 +9,6 @@ RSpec.describe Podcast, type: :model do
   it { should respond_to(:itunes) }
   it { should respond_to(:stitcher) }
   it { should respond_to(:podbay) }
+  it { should respond_to(:episodes) }
 
 end
