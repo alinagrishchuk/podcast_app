@@ -3,14 +3,13 @@ class PodcastsController < ApplicationController
   before_action :find_episode, only: [:show, :dashboard]
 
   def index
-    @podcasts = Podcast.all
+    @podcasts = Podcast.all.paginate(page: params[:page], per_page: 4)
   end
 
   def show
   end
 
   def dashboard
-
   end
 
   private
@@ -24,6 +23,6 @@ class PodcastsController < ApplicationController
   end
 
   def find_episode
-    @episodes = Episode.where(podcast_id: @podcast)
+    @episodes = Episode.where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
   end
 end
