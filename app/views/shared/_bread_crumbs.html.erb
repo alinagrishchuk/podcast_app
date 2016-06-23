@@ -1,0 +1,10 @@
+<div id="links">
+  <div class="wrapper_skinny">
+    <ul>
+      <%= nav_link "Episodes", authenticated_root_path %>
+      <%= nav_link "New Episode", new_podcast_episode_path(current_podcast) %>
+      <%= nav_link "Account Settings", edit_podcast_registration_path %>
+      <%= nav_link "View Podcast", podcast_path(current_podcast) %>
+    </ul>
+  </div>
+</div>

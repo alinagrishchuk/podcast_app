@@ -5,16 +5,7 @@
     </div>
   </div>
 
-  <div id="links">
-    <div class="wrapper_skinny">
-      <ul>
-        <li><a href="#">Episodes</a></li>
-        <li><a href="#">New Episode</a></li>
-        <li><%= link_to "Account Settings", edit_podcast_registration_path, class: "current" %></li>
-        <li><a href="#">View Podcast</a></li>
-      </ul>
-    </div>
-  </div>
+  <%= render 'shared/bread_crumbs' %>
 </div>
 
 <div id="form">
