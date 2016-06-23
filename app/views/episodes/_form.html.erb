@@ -13,13 +13,30 @@
       </div>
 
       <div class="field">
-        <%= f.label :episode_thumbnail %><br />
-        <%= f.file_field :episode_thumbnail %>
+        <%= f.label :episode_thumbnail %>
+        <div class="input-btn-wrapper ">
+          <%= f.file_field :episode_thumbnail %>
+          Select File
+        </div>
+
+        <% if f.object.episode_thumbnail %>
+          <div>
+            <%= image_tag f.object.episode_thumbnail.url(:medium) , class: "thumbnail" %>
+          </div>
+        <% end %>
       </div>
 
       <div class="field">
-        <%= f.label :mp3 %><br />
-        <%= f.file_field :mp3 %>
+        <%= f.label :mp3 %>
+        <div class="input-btn-wrapper ">
+          <%= f.file_field :mp3 %>
+          Select File
+        </div>
+        <% if f.object.mp3 %>
+          <div id="episode_content" data-src="<%= f.object.mp3.url %>">
+            <%= render 'player' %>
+          </div>
+        <% end %>
       </div>
 
       <%= f.submit class: "button button_highlight button_block" %>

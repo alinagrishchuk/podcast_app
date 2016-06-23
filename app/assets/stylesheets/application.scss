@@ -97,6 +97,33 @@ body {
   }
 }
 
+/****************** button file upload */
+input[type=file] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.input-btn-wrapper {
+  position: relative;
+  max-width: 6rem;
+  font-size: .6rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  color: $white;
+  background: $highlight;
+  border-radius: 2rem;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  &:hover {
+    background: darken($highlight, 7.5%);
+    cursor: pointer;
+  }
+}
+
 /****************** forms */
 #form {
   padding: 3rem 3.5%;
@@ -138,7 +165,6 @@ textarea {
   text-align: center;
   margin: auto;
 }
-
 
 
 /******************************* header */
