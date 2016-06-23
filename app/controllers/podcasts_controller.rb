@@ -1,6 +1,7 @@
 class PodcastsController < ApplicationController
   before_action :find_podcast, only: [:show, :dashboard]
   before_action :find_episode, only: [:show, :dashboard]
+  respond_to :html, :js
 
   def index
     @podcasts = Podcast.include_episode_counts.paginate(page: params[:page], per_page: 4)

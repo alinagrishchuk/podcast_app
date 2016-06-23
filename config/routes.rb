@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :podcasts
+  devise_for :podcasts, :controllers => { :registrations => :registrations }
   get 'welcome/index'
 
   resources :podcasts, only: [:index, :show ] do
