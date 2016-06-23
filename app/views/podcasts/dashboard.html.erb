@@ -1,10 +1,6 @@
 <%= render 'shared/primary_header' %>
 <div id="podcast_show">
-  <div id="show_banner">
-    <div class="wrapper_skinny">
-      <h1><%= @podcast.title %></h1>
-    </div>
-  </div>
+  <%= render 'podcasts/podcast_banner',  podcast: @podcast %>
   <%= render 'shared/bread_crumbs' %>
   <%= render 'episodes/episodes' %>
 </div>

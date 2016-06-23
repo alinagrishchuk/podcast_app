@@ -1,9 +1,5 @@
 <div id="podcast_show">
-  <div id="show_banner">
-    <div class="wrapper_skinny">
-      <h1>Podcast Dashboard</h1>
-    </div>
-  </div>
+  <%= render 'podcasts/podcast_banner',  podcast: @podcast %>
 
   <%= render 'shared/bread_crumbs' %>
 </div>

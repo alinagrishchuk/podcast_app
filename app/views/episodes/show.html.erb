@@ -1,19 +1,5 @@
 <div id="podcast_show">
-  <div id="show_banner">
-    <div class="wrapper_skinny">
-      <h1><%= @podcast.title %></h1>
-      <p class="description"><%= @podcast.description %></p>
-      <% unless @podcast.itunes.blank? %>
-          <a href="<%= @podcast.itunes %>" class="subscribe_link">iTunes</a>
-      <% end %>
-      <% unless @podcast.stitcher.blank? %>
-          <a href="<%= @podcast.stitcher %>" class="subscribe_link">Stitcher</a>
-      <% end %>
-      <% unless @podcast.podbay.blank? %>
-          <a href="<%= @podcast.podbay %>" class="subscribe_link">PodBay</a>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'podcasts/podcast_banner',  podcast: @podcast %>
 
   <div id="breadcrumb">
     <%= link_to podcasts_path do %>
