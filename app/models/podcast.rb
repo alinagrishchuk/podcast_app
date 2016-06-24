@@ -3,7 +3,10 @@ class Podcast < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_attached_file :thumbnail, styles: { large: "1000x1000#", medium: "550x550#" },
+  has_attached_file :thumbnail,
+                    styles: { large: '300x300#',
+                              medium: '200x200#' },
+                    :convert_options => { :thumb => '-quality 75 -strip' },
                     :storage => :dropbox,
                     :dropbox_credentials => { app_key: ENV['APP_KEY'],
                                               app_secret: ENV['APP_SECRET'],
