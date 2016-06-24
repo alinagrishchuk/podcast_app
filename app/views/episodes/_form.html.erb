@@ -1,6 +1,6 @@
 <div id="form">
   <div class="wrapper_skinny">
-    <%= form_for ([@podcast, @episode]) do |f| %>
+    <%= form_for([@podcast, @episode], :builder => CustomFormBuilder) do |f| %>
 
       <div class="field">
         <%= f.label :title %><br>
@@ -13,13 +13,10 @@
       </div>
 
       <div class="field">
-        <%= f.label :episode_thumbnail %>
-        <div class="input-btn-wrapper ">
-          <%= f.file_field :episode_thumbnail %>
-          Select File
-        </div>
+        <%= f.file_field_button :episode_thumbnail, 'Select thumbnail' %>
 
-        <% if f.object.episode_thumbnail %>
+
+        <% unless f.object.episode_thumbnail.blank? %>
           <div>
             <%= image_tag f.object.episode_thumbnail.url(:medium) , class: "thumbnail" %>
           </div>
@@ -27,16 +24,14 @@
       </div>
 
       <div class="field">
-        <%= f.label :mp3 %>
-        <div class="input-btn-wrapper ">
-          <%= f.file_field :mp3 %>
-          Select File
-        </div>
-        <% if f.object.mp3 %>
+        <%= f.file_field_button :mp3, 'Select MP3' %>
+
+        <% unless f.object.mp3.blank? %>
           <div id="episode_content" data-src="<%= f.object.mp3.url %>">
             <%= render 'player' %>
           </div>
         <% end %>
+
       </div>
 
       <%= f.submit class: "button button_highlight button_block" %>

@@ -101,10 +101,11 @@ body {
 
 .input-btn-wrapper {
   position: relative;
-  width: 6rem;
   background: $highlight;
   border-radius: 2rem;
   padding: .5rem 1rem;
+  text-align: center;
+  width: 12rem;
 
   span {
     font-size: .6rem;
