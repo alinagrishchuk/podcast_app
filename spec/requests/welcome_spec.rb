@@ -19,7 +19,7 @@ RSpec.describe "Welcome", type: :request do
         before { sign_in(podcast) }
 
         it { should_not have_link('Sign in', href: new_podcast_session_path) }
-        it { should have_link('Dashboard', href:  destroy_podcast_session_path) }
+        it { should have_link('Dashboard', href:  authenticated_root_path) }
         it { should have_link('Sign Out', href: destroy_podcast_session_path) }
         it { have_link('Explore') }
       end

@@ -1,5 +1,8 @@
 class Episode < ActiveRecord::Base
   belongs_to :podcast
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   has_attached_file :episode_thumbnail,
                     styles: { large: '300x300#',
                               medium: '200x200#' },
@@ -28,6 +31,16 @@ class Episode < ActiveRecord::Base
                         :file_name => { :matches => [/mp3\Z/] }
 
   validates :podcast, presence: true
+
+  def all_tags=(tags_string)
+    self.tags = tags_string.split(',').map do |t|
+      Tag.where(name: t.downcase.strip).first_or_create!
+    end
+  end
+
+  def all_tags
+    tags.map(&:name).join(', ')
+  end
 
   default_scope -> { order('created_at DESC') }
 end
