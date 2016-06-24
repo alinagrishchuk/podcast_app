@@ -12,6 +12,7 @@ gem 'paperclip', '~> 4.2.1'
 gem 'aws-sdk', '~> 2.0.33'
 gem "paperclip-dropbox", ">= 1.1.7"
 gem "will_paginate"
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
