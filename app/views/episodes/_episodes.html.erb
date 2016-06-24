@@ -1,4 +1,4 @@
-<div id="episodes">
+<div id="episodes" class="js_ajax_container">
   <div class="wrapper_skinny">
     <ul class="cf">
       <% @episodes.each do |episode| %>
@@ -21,6 +21,6 @@
         </li>
       <% end %>
     </ul>
-    <%= will_paginate @episodes, previous_label: "Previous", next_label: "Next" %>
+    <%= will_paginate @episodes, previous_label: 'Previous', next_label: 'Next' %>
   </div>
 </div>

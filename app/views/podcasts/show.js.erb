@@ -1,1 +1,5 @@
-$("#container").html("<div class='wrapper_skinny'> <%= j (render 'show') %> </div>");
+<% if @full %>
+  $("#container").html("<div class='wrapper_skinny'> <%= j (render 'show') %> </div>");
+<% else %>
+  $('.js_ajax_container').html("<%= escape_javascript(render("episodes/episodes"))%>");
+<% end %>

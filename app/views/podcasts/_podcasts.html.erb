@@ -1,0 +1,18 @@
+<div class="js_ajax_container">
+  <ul class="cf">
+    <% @podcasts.each do |podcast| %>
+        <%= link_to podcast_path(podcast) do %>
+            <li>
+              <%= image_tag(podcast.thumbnail.url(:medium))%>
+              <div class="podcast_overview">
+                <h2><%= podcast.title %></h2>
+                <p class="episode_count">
+                  <%= pluralize(podcast.episodes_count,'episode')  %>
+                </p>
+              </div>
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+  <%= will_paginate @podcasts, previous_label: "Previous", next_label: "Next" %>
+</div>

@@ -5,9 +5,14 @@ class PodcastsController < ApplicationController
 
   def index
     @podcasts = Podcast.include_episode_counts.paginate(page: params[:page], per_page: 4)
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
   end
 
   def show
+    @full = params[:full]
     @tag = params[:tag]
     if @tag.blank?
       @episodes = Episode.where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
