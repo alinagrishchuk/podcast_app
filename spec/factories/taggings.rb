@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tagging do
-    tag nil
-    episode nil
+    tag tag
+    episode episode
   end
 end

@@ -98,7 +98,6 @@ body {
 }
 
 /****************** button file upload */
-
 .input-btn-wrapper {
   position: relative;
   background: $highlight;
@@ -129,6 +128,15 @@ body {
   }
 }
 
+/****************** links */
+.links {
+  font-weight: 700;
+  font-size: .8rem;
+  a {
+    color: $highlight;
+    margin-right: 1rem;
+  }
+}
 /****************** forms */
 #form {
   padding: 3rem 3.5%;

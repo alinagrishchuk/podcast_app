@@ -15,7 +15,6 @@
       <div class="field">
         <%= f.file_field_button :episode_thumbnail, 'Select thumbnail' %>
 
-
         <% unless f.object.episode_thumbnail.blank? %>
           <div>
             <%= image_tag f.object.episode_thumbnail.url(:medium) , class: "thumbnail" %>
@@ -31,7 +30,11 @@
             <%= render 'player' %>
           </div>
         <% end %>
+      </div>
 
+      <div class="field">
+        <%= f.label :all_tags, "List All Tags, separate each tag by a comma" %><br />
+        <%= f.text_field :all_tags %>
       </div>
 
       <%= f.submit class: "button button_highlight button_block" %>

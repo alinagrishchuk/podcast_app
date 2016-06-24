@@ -16,6 +16,11 @@
       <%= image_tag @episode.episode_thumbnail.url(:medium), class: "current_episode_thumbnail" %>
       <h2><%= @episode.title %></h2>
       <p class="description"><%= @episode.description %></p>
+      <div class="links">
+        <% @episode.tags.each do |t| %>
+            <a><%= t.name %></a>
+        <% end %>
+      </div>
       <%= render 'player' %>
     </div>
   </div>
