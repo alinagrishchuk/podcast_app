@@ -18,7 +18,7 @@
       <p class="description"><%= @episode.description %></p>
       <div class="links">
         <% @episode.tags.each do |t| %>
-            <a><%= t.name %></a>
+          <%= link_to t.name, podcast_path(@podcast, tag: t.name) %>
         <% end %>
       </div>
       <%= render 'player' %>

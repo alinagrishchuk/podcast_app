@@ -2,6 +2,7 @@ $white: #FFFFFF;
 $highlight: #EE7964;
 $dark: #2C3135;
 $light: #EDEFF5;
+$normal: #9ba4ac;
 
 * {
   box-sizing: border-box;
@@ -46,6 +47,14 @@ body {
 
 
 /******************************* components */
+
+/****************** sub-title */
+.sub_title {
+  color: $normal;
+  text-align: center;
+  display: block;
+  font-size: 1.5rem;
+}
 
 /****************** alert */
 #alert_wrapper {
@@ -100,21 +109,21 @@ body {
 /****************** button file upload */
 .input-btn-wrapper {
   position: relative;
-  background: $highlight;
-  border-radius: 2rem;
-  padding: .5rem 1rem;
   text-align: center;
   width: 12rem;
+  border-radius: .35rem;
+  padding: .5rem 1rem;
+  background: $light;
+  border: 1px solid darken($light, 5%);
 
   span {
     font-size: .6rem;
     text-transform: uppercase;
-    font-weight: 700;
     text-align: center;
-    color: $white;
+    letter-spacing: 1px;
   }
   &:hover {
-    background: darken($highlight, 7.5%);
+    background: #b4b9c7;
     cursor: pointer;
   }
 

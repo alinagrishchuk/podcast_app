@@ -43,4 +43,9 @@ class Episode < ActiveRecord::Base
   end
 
   default_scope -> { order('created_at DESC') }
+
+  def self.tagged_with(name)
+    Tag.find_by(name: name).episodes
+  end
+
 end

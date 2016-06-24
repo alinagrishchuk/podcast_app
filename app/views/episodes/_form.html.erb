@@ -13,8 +13,12 @@
       </div>
 
       <div class="field">
-        <%= f.file_field_button :episode_thumbnail, 'Select thumbnail' %>
+        <%= f.label :all_tags, "List All Tags, separate each tag by a comma" %><br />
+        <%= f.text_field :all_tags %>
+      </div>
 
+      <div class="field">
+        <%= f.file_field_button :episode_thumbnail, 'Select thumbnail' %> <br>
         <% unless f.object.episode_thumbnail.blank? %>
           <div>
             <%= image_tag f.object.episode_thumbnail.url(:medium) , class: "thumbnail" %>
@@ -24,17 +28,11 @@
 
       <div class="field">
         <%= f.file_field_button :mp3, 'Select MP3' %>
-
         <% unless f.object.mp3.blank? %>
           <div id="episode_content" data-src="<%= f.object.mp3.url %>">
             <%= render 'player' %>
           </div>
         <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :all_tags, "List All Tags, separate each tag by a comma" %><br />
-        <%= f.text_field :all_tags %>
       </div>
 
       <%= f.submit class: "button button_highlight button_block" %>
