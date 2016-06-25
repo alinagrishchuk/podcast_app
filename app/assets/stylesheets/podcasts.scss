@@ -79,12 +79,14 @@
       }
     }
   }
+
   #breadcrumb {
     padding: 1rem 0;
     text-align: center;
     border-bottom: 1px solid lighten($dark, 75%);
     font-weight: 700;
     font-size: .7rem;
+    margin-bottom: 1rem;
     a {
       color: lighten($dark, 45%);
       text-decoration: none;

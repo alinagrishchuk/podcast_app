@@ -9,6 +9,14 @@ class Podcast < ActiveRecord::Base
 
   default_scope -> { order('created_at DESC') }
 
+  def tags
+    Episode.unscoped.
+      where(podcast_id: 9).
+      joins(:tags).
+      group('tags.name').
+      select('tags.name , count(episodes.id) as count')
+  end
+
   def self.include_episode_counts
     joins(
       %{ LEFT OUTER JOIN (
@@ -17,4 +25,5 @@ class Podcast < ActiveRecord::Base
            ON ep.podcast_id = podcasts.id }).
     select("COALESCE(ep.episodes_count,0) as episodes_count, podcasts.*")
   end
+
 end

@@ -9,8 +9,14 @@
     <% end %>
   </div>
 
+  <div class="links center">
+    <% @podcast.tags.each do |t| %>
+        <%= link_to "##{t.name} #{t.count}", podcast_path(@podcast, tag: t.name) %>
+    <% end %>
+  </div>
+
   <% unless @tag.blank? %>
-    <h3 class="sub_title"><%= "Search for #{@tag}"%></h3>
+    <h3 class="sub_title"><%= "Search for ##{@tag}"%> <%= link_to "Clear", podcast_path(@podcast), class: "links" %></h3>
   <% end %>
 
   <%= render 'episodes/episodes' %>

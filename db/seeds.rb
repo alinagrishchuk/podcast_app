@@ -39,3 +39,10 @@ main_podcast = Podcast.create!({ email:                  'test@example.com',
                                   episode_thumbnail:      File.open(images.sample),
                                   mp3:                    File.open(mp3s.sample) })
 end
+
+
+tags = %w( chillout electronic ambient
+           downtempo indie lounge chillwave house summer
+           experimental dark instrumental drone
+           psytrance chill chillwave)
+Episode.all.each { |e| e.all_tags = tags.sample(3).join(','); e.save! }

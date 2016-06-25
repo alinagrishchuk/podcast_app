@@ -16,9 +16,9 @@
       <%= image_tag @episode.episode_thumbnail.url(:large), class: "current_episode_thumbnail" %>
       <h2><%= @episode.title %></h2>
       <p class="description"><%= @episode.description %></p>
-      <div class="links">
+      <div class="links center">
         <% @episode.tags.each do |t| %>
-          <%= link_to t.name, podcast_path(@podcast, tag: t.name) %>
+          <%= link_to "##{t.name}", podcast_path(@podcast, tag: t.name) %>
         <% end %>
       </div>
       <%= render 'player' %>

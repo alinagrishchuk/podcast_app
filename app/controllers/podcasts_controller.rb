@@ -14,7 +14,8 @@ class PodcastsController < ApplicationController
   def show
     @full = params[:full]
     @tag = params[:tag]
-    if @tag.blank?
+    @possible_tags = Episode.where(podcast_id: @podcast)
+    if @tag.blank? #filtering by tag
       @episodes = Episode.where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
     else
       @episodes = Episode.tagged_with(params[:tag]).where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)

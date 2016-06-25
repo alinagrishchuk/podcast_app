@@ -36,6 +36,12 @@ body {
   white-space: nowrap;
 }
 
+.pull-right {
+  float: right;
+}
+.center {
+  text-align: center;
+}
 .cf:before,
 .cf:after {
   content: " ";
@@ -163,9 +169,19 @@ body {
 .links {
   font-weight: 700;
   font-size: .8rem;
+  color: $highlight;
   a {
-    color: $highlight;
     margin-right: 1rem;
+    color: inherit;
+    text-decoration: none;
+  }
+  h5 {
+    margin: 0;
+    padding: 0;
+    display: inline;
+    margin-right: 0.6rem;
+    font-size:  inherit;
+    color: $dark;
   }
 }
 /****************** forms */
