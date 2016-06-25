@@ -13,7 +13,7 @@
 
   <div id="episode_content" data-src="<%= @episode.mp3.url %>">
     <div class="wrapper_skinny">
-      <%= image_tag @episode.episode_thumbnail.url(:medium), class: "current_episode_thumbnail" %>
+      <%= image_tag @episode.episode_thumbnail.url(:large), class: "current_episode_thumbnail" %>
       <h2><%= @episode.title %></h2>
       <p class="description"><%= @episode.description %></p>
       <div class="links">
