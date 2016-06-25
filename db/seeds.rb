@@ -2,9 +2,9 @@ images = Dir.glob("#{Rails.root}/db/seeds/img/*.jpg")
 mp3s = Dir.glob("#{Rails.root}/db/seeds/mp3/*.mp3")
 
 #for all  podcasts
-30.times do |i|
+8.times do |i|
   email =  Faker::Internet.user_name + i.to_s +
-            "@#{Faker::Internet.domain_name}"
+    "@#{Faker::Internet.domain_name}"
 
   podcast = Podcast.create!({ email:                  email,
                               password:               'foobar12',
@@ -25,8 +25,15 @@ end
 
 
 #for main  podcast
-main_podcast = Podcast.find_by(email: 'test@example.com')
-30.times do
+main_podcast = Podcast.create!({ email:                  'test@example.com',
+                                 password:               'test@example.com',
+                                 password_confirmation:  'test@example.com',
+                                 title:                  Faker::Hipster.sentence,
+                                 description:            Faker::Hipster.paragraph(3),
+                                 itunes:                 'https://www.apple.com/ru/itunes/',
+                                 podbay:                 'https://podbay.fm/',
+                                 thumbnail:              File.open(images.sample) })
+15.times do
   main_podcast.episodes.create!({ title:                  Faker::Hipster.sentence,
                                   description:            Faker::Hipster.paragraph(2),
                                   episode_thumbnail:      File.open(images.sample),

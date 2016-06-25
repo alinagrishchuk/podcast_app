@@ -11,22 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624120837) do
+ActiveRecord::Schema.define(version: 20160625115442) do
 
   create_table "episodes", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "podcast_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "episode_thumbnail_file_name"
-    t.string   "episode_thumbnail_content_type"
-    t.integer  "episode_thumbnail_file_size"
-    t.datetime "episode_thumbnail_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "mp3_file_name"
     t.string   "mp3_content_type"
     t.integer  "mp3_file_size"
     t.datetime "mp3_updated_at"
+    t.string   "episode_thumbnail"
   end
 
   add_index "episodes", ["podcast_id"], name: "index_episodes_on_podcast_id"
@@ -49,10 +46,7 @@ ActiveRecord::Schema.define(version: 20160624120837) do
     t.string   "itunes"
     t.string   "stitcher"
     t.string   "podbay"
-    t.string   "thumbnail_file_name"
-    t.string   "thumbnail_content_type"
-    t.integer  "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at"
+    t.string   "thumbnail"
   end
 
   add_index "podcasts", ["email"], name: "index_podcasts_on_email", unique: true

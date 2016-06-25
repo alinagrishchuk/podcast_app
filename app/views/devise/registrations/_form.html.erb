@@ -1,71 +1,70 @@
 <div id="form">
   <div class="wrapper_skinny">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, :builder => CustomFormBuilder) do |f| %>
-        <%= devise_error_messages! %>
+      <%= devise_error_messages! %>
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, autofocus: true %>
+      </div>
 
-        <div class="field">
-          <%= f.label :title %><br />
-          <%= f.text_field :title, autofocus: true %>
-        </div>
+      <div class="field">
+        <%= f.label :description %><br />
+        <%= f.text_area :description %>
+      </div>
 
-        <div class="field">
-          <%= f.label :description %><br />
-          <%= f.text_area :description %>
-        </div>
-
-        <div class="field">
-          <% unless f.object.thumbnail.blank? %>
-            <div>
-              <%= image_tag f.object.thumbnail.url(:medium) , class: "select thumbnail" %>
-            </div>
-          <% end %>
-          <%= f.file_field_button :thumbnail, 'Thumbnail' %>
-        </div>
-
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div class="field">
+        <% unless f.object.thumbnail.blank? %>
+          <div>
+            <%= image_tag f.object.thumbnail.url(:medium) , class: "select thumbnail" %>
+          </div>
         <% end %>
+        <%= f.file_field_button :thumbnail, 'Thumbnail' %><br>
+      </div>
 
-        <h2>Links</h2>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email %>
+      </div>
 
-        <div class="field">
-          <%= f.label :itunes %><br />
-          <%= f.text_field :itunes %>
-        </div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-        <div class="field">
-          <%= f.label :stitcher %><br />
-          <%= f.text_field :stitcher %>
-        </div>
+      <h2>Links</h2>
 
-        <div class="field">
-          <%= f.label :podbay %><br />
-          <%= f.text_field :podbay %>
-        </div>
+      <div class="field">
+        <%= f.label :itunes %><br />
+        <%= f.text_field :itunes %>
+      </div>
 
-        <div class="field">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "off" %>
-        </div>
+      <div class="field">
+        <%= f.label :stitcher %><br />
+        <%= f.text_field :stitcher %>
+      </div>
 
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        </div>
+      <div class="field">
+        <%= f.label :podbay %><br />
+        <%= f.text_field :podbay %>
+      </div>
 
-        <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "off" %>
-        </div>
+      <div class="field">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
 
-        <div class="actions">
-          <%= f.submit "Update", class: "button button_highlight button_block" %>
-        </div>
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update", class: "button button_highlight button_block" %>
+      </div>
     <% end %>
 
   </div>
