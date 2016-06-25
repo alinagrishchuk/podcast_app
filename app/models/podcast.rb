@@ -26,4 +26,7 @@ class Podcast < ActiveRecord::Base
     select("COALESCE(ep.episodes_count,0) as episodes_count, podcasts.*")
   end
 
+  def self.search(term)
+  where('title like ?', "#{term}%")
+  end
 end

@@ -226,6 +226,34 @@ textarea {
   margin: auto;
 }
 
+/******************************* search form */
+.seach-form {
+  margin-bottom: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+
+  #search {
+    width: 60%;
+    height: 100%;
+  }
+  input[type="submit"] {
+    width: 15%;
+    height: 100%;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+    padding: .5rem 1rem;
+    background: $light;
+    transition: background .4s ease-in-out;;
+    border: 1px solid darken($light, 5%);
+    border-radius: .35rem;
+    margin-top: .5rem;
+    &:hover {
+      background: $normal;
+    }
+  }
+}
 
 /******************************* header */
 #primary_header {

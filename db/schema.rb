@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625115442) do
+ActiveRecord::Schema.define(version: 20160625192522) do
 
   create_table "episodes", force: :cascade do |t|
     t.string   "title"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160625115442) do
 
   add_index "podcasts", ["email"], name: "index_podcasts_on_email", unique: true
   add_index "podcasts", ["reset_password_token"], name: "index_podcasts_on_reset_password_token", unique: true
+  add_index "podcasts", ["title"], name: "index_podcasts_on_title"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
