@@ -1,3 +1,6 @@
+## Result
+https://podcast-application.herokuapp.com/
+
 ## User Stories
 
 - As a user, I want to be able to explore / discover new podcasts so that I can find new stuff to listen to
@@ -17,7 +20,7 @@
 - CRUD for podcast episodes
 - Image uploading 
 - MP3 uploading
-- store assets on Amazon S3
+- store assets on Cloudinary & Dropbox
 - Launch application live on Heroku
 
 
@@ -41,7 +44,13 @@ has_many :episodes
  - podcast id
  - thumbnail
  - mp3
-
+ 
+ **Tag**
+  - name
+  
+ **Taggings**
+  - episode_id
+  - tag_id
 
 ## Pages 
 
