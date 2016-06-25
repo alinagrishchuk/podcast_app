@@ -17,6 +17,9 @@ gem 'faker'
 gem 'carrierwave'
 gem 'cloudinary'
 
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'

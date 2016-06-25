@@ -4,9 +4,15 @@ class PodcastsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @podcasts = Podcast.include_episode_counts
-    @podcasts =  @podcasts.search(params[:search]) if params[:search].present?
-    @podcasts =  @podcasts.paginate(page: params[:page], per_page: 4)
+    if params[:search].present?
+      @search = Podcast.search { fulltext params[:search]; paginate :page => params[:page] }
+      @podcasts = @search.results
+    else
+      @podcasts = Podcast.include_episode_counts
+      @podcasts =  @podcasts.search(params[:search]) if params[:search].present?
+      @podcasts =  @podcasts.paginate(page: params[:page], per_page: 4)
+    end
+
   end
 
   def show

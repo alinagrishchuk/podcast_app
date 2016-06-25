@@ -9,6 +9,12 @@ class Podcast < ActiveRecord::Base
 
   default_scope -> { order('created_at DESC') }
 
+  searchable do
+    text :title
+    text :episodes do
+      episodes.map { |episode| episode.title }
+    end
+  end
   def tags
     Episode.unscoped.
       where(podcast_id: 9).
@@ -26,7 +32,11 @@ class Podcast < ActiveRecord::Base
     select("COALESCE(ep.episodes_count,0) as episodes_count, podcasts.*")
   end
 
-  def self.search(term)
-  where('title like ?', "#{term}%")
+  def self.search_by_title(term)
+    where('title like ?', "#{term}%")
+  end
+
+  def self.full_search(term)
+    where('title like ?', "#{term}%")
   end
 end
