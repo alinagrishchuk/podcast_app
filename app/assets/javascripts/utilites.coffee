@@ -1,12 +1,20 @@
-ready = ->
+$(document).on 'ajax:beforeSend', ->
+  loaderSplashScreen.show()
+$(document).on 'page:fetch', ->
+  loaderSplashScreen.show()
+
+$(document).on 'page:update', ->
+  setPagingRemote()
+  loaderSplashScreen.hide()
+
+# set ajax call for paging on the page (will_paginate gem)
+setPagingRemote = ->
   $('.pagination > a').attr('data-remote', 'true')
 
-  $(document).on 'ajax:beforeSend', ->
+loaderSplashScreen = {
+  show: ->
     $(".loader_container").css('display','block')
 
-  $(document).on 'ajaxComplete', (evt, data, status, xhr) ->
+  hide: ->
     $(".loader_container").css('display','none')
-
-$(document).ready(ready)
-$(document).on('page:load', ready)
-$(document).on('page:update', ready)
+}
