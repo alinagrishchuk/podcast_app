@@ -20,16 +20,5 @@ loaderSplashScreen = {
     $(".loader_container").css('display','none')
 }
 
-searchForm = {
-  search: ->
-    term = $("#search").val()
-    params = {}
-    params.search = term
-    action = $("#search").parent()[0].action
-    $.get(action, params, null, 'script');
 
-  init: ->
-    $(".js-search-form  #search").on 'input', ->
-    searchForm.search()
-}
 
