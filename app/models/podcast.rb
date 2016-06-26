@@ -14,10 +14,17 @@ class Podcast < ActiveRecord::Base
 
   def tags
     Episode.unscoped.
-      where(podcast_id: 9).
+      where(podcast_id: self.id).
       joins(:tags).
       group('tags.name').
       select('tags.name , count(episodes.id) as count')
+  end
+
+  def self.tagged_with name
+    tag_id =  "SELECT tags.id FROM tags WHERE (name = :name)  LIMIT 1"
+    episode_ids = "SELECT DISTINCT(episode_id) FROM taggings where tag_id = (#{tag_id})"
+    podcast_ids = "SELECT DISTINCT(podcast_id) FROM episodes where episodes.id in (#{episode_ids})"
+    where("id in (#{podcast_ids})", name: name)
   end
 
   def self.include_episode_counts

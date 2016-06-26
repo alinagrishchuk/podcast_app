@@ -7,8 +7,6 @@ $(document).on 'page:update', ->
   setPagingRemote()
   loaderSplashScreen.hide()
 
-  $(".js-search-form  #search").on 'input', ->
-    searchForm.search()
 
 # set ajax call for paging on the page (will_paginate gem)
 setPagingRemote = ->
@@ -29,5 +27,9 @@ searchForm = {
     params.search = term
     action = $("#search").parent()[0].action
     $.get(action, params, null, 'script');
+
+  init: ->
+    $(".js-search-form  #search").on 'input', ->
+    searchForm.search()
 }
 

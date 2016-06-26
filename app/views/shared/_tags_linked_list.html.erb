@@ -1,0 +1,5 @@
+<div class="links center">
+  <% tags.each do |t| %>
+      <%= link_to "##{t.name} #{t.count}", podcasts_path(tag: t.name), remote: true %>
+  <% end %>
+</div>
