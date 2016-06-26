@@ -20,6 +20,9 @@ gem 'cloudinary'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'

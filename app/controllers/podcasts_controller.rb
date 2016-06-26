@@ -5,8 +5,10 @@ class PodcastsController < ApplicationController
 
   def index
     if params[:search].present?
-      @search = Podcast.search { fulltext params[:search]; paginate :page => params[:page] }
-      @podcasts = @search.results
+      #@search = Podcast.search { fulltext params[:search]; paginate :page => params[:page] }
+      #@podcasts = @search.results
+      @podcasts = Podcast.search(params[:search]).page(params[:page]).records
+        #records.paginate(page: params[:page], per_page: 4)
     else
       @podcasts = Podcast.include_episode_counts
       @podcasts =  @podcasts.search(params[:search]) if params[:search].present?
@@ -43,3 +45,4 @@ class PodcastsController < ApplicationController
     @episodes = Episode.where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
   end
 end
+
