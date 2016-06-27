@@ -52,4 +52,3 @@ class Podcast < ActiveRecord::Base
   #  end
   #end
 end
- # for auto sync model with elastic search

@@ -6,7 +6,7 @@ class PodcastsController < ApplicationController
   def index
     @tags  = Tag.usage
     @podcasts = Podcast.include_episode_counts
-    @podcasts = Podcast.search(params[:search]).records               unless  params[:search].blank?
+    @podcasts = Podcast.search(params[:search]).per_page(4).page(params[:page]).records               unless  params[:search].blank?
     @podcasts = @podcasts.tagged_with(params[:tag])                   unless  params[:tag].blank?
 
     @podcasts = @podcasts.paginate(page: params[:page], per_page: 4)

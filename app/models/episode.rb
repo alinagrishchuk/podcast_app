@@ -1,4 +1,6 @@
 class Episode < ActiveRecord::Base
+  include SearchableEpisodes
+
   belongs_to :podcast
   has_many :taggings
   has_many :tags, through: :taggings
@@ -12,10 +14,10 @@ class Episode < ActiveRecord::Base
                                                   user_id: ENV['USER_ID'],
                                                   access_type: 'app_folder'},
                         :path => "episodes/mp3/:id/:id_:filename"
+
   validates_attachment  :mp3,
                         :content_type => { :content_type => ["audio/mpeg", "audio/mp3"] },
                         :file_name => { :matches => [/mp3\Z/] }
-
   validates :podcast, presence: true
 
   def all_tags=(tags_string)
@@ -33,5 +35,4 @@ class Episode < ActiveRecord::Base
   def self.tagged_with(name)
     Tag.find_by(name: name).episodes
   end
-
 end

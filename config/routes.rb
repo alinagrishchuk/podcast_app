@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'seacrch/episodes', as: :episodes_search
+
   devise_for :podcasts, :controllers => { :registrations => :registrations }
   get 'welcome/index'
 

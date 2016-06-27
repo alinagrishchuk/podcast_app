@@ -1,0 +1,26 @@
+<%= form_for  episodes_search_path, method: :get do |f| %>
+    <p>
+      <%= f.label "Search for" %>
+      <%= text_field_tag :q, params[:q] %>
+      <%= submit_tag "Go", name: nil %>
+    </p>
+<% end %>
+
+<ul>
+  <% @episodes.each do |episode| %>
+      <li>
+        <h3>
+          <%= episode.try(:highlight).try(:title) ? episode.highlight.title[0].html_safe : episode.title %>
+        </h3>
+
+        <p>
+          <%= episode.description.html_safe %>
+        </p>
+        <% if episode.try(:highlight).try(:description) %>
+            <% episode.highlight.description.each do |snippet| %>
+                <p><%= snippet.html_safe %>...</p>
+            <% end %>
+        <% end %>
+      </li>
+  <% end %>
+</ul>
