@@ -1,0 +1,30 @@
+<div id="episodes" class="js_ajax_container">
+  <div class="wrapper_skinny">
+    <ul class="cf">
+      <% @episodes.each do |episode| %>
+          <li class="cf">
+            <div class="episode_thumbnail">
+              <%= image_tag episode.episode_thumbnail.url(:medium) %>
+            </div>
+            <div class="episode_overview">
+              <h2>
+                <%= link_to episode.try(:highlight).try(:title) ?
+                                episode.highlight.title[0].html_safe : episode.title,
+                            podcast_episode_path(episode.podcast_id, episode.id) %>
+              </h2>
+              <p class="description">
+                <% if episode.try(:highlight).try(:description) %>
+                    <% episode.highlight.description.each do |snippet| %>
+                        <%= snippet.html_safe %>...</br>
+                    <% end %>
+                <% else %>
+                    <%= truncate(episode.description, length: 160) %>
+                <% end %>
+              </p>
+            </div>
+          </li>
+      <% end %>
+      <%= will_paginate @episodes, previous_label: 'Previous', next_label: 'Next' %>
+    </ul>
+  </div>
+</div>

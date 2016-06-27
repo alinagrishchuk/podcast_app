@@ -35,7 +35,7 @@ module SearchableEpisodes
     end
 
 
-    def self.seacrh_with_highlight term
+    def self.search_with_highlight term
       search( query: { multi_match: {  query: term,
                                        fields: ['title^4' ,
                                                 "description"] } },
