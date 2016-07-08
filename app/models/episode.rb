@@ -20,6 +20,8 @@ class Episode < ActiveRecord::Base
                         :file_name => { :matches => [/mp3\Z/] }
   validates :podcast, presence: true
 
+  default_scope -> { includes(:tags) }
+
   def all_tags=(tags_string)
     self.tags = tags_string.split(',').map do |t|
       Tag.where(name: t.downcase.strip).first_or_create!
@@ -35,4 +37,6 @@ class Episode < ActiveRecord::Base
   def self.tagged_with(name)
     Tag.find_by(name: name).episodes
   end
+
+
 end

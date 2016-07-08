@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SeacrchController, type: :controller do
+RSpec.describe SearchController, type: :controller do
 
   describe "GET #episodes" do
     it "returns http success" do

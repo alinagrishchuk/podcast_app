@@ -25,11 +25,9 @@ module SearchablePodcast
       }
 
       podcast_attrs[:episodes] = self.episodes.map do |e|
-        {
-          :title => e.title,
+        { :title => e.title,
           :description => e.description,
-          :tags => e.tags.map{ |t| {name: t.name} }
-        }
+          :tags => e.tags.map{ |t| { name: t.name } } }
       end
 
       podcast_attrs.as_json
