@@ -1,21 +1,24 @@
 class PodcastsController < ApplicationController
   before_action :find_podcast, only: [:show, :dashboard]
   before_action :find_episode, only: [:dashboard]
+  before_action :set_tag, only: [:index, :show]
+
   respond_to :html, :js
 
   def index
     @tags  = Tag.usage
-    @podcasts = Podcast.include_episode_counts
-    @podcasts = Podcast.search(params[:search]).per_page(4).page(params[:page]).records               unless  params[:search].blank?
-    @podcasts = @podcasts.tagged_with(params[:tag])                   unless  params[:tag].blank?
+    if params[:search].blank?
+      @podcasts = Podcast.all
+      @podcasts = @podcasts.tagged_with @tag unless @tag.blank?
+    else #search using just es
+      @podcasts = Podcast.search(params[:search]).paginate(page: params[:page], per_page: 4).records
+    end
 
-    @podcasts = @podcasts.paginate(page: params[:page], per_page: 4)
-
+    @podcasts = @podcasts.include_episodes_count.paginate(page: params[:page], per_page: 4)
   end
 
   def show
     @full = params[:full] #rendering full view in container
-    @tag = params[:tag]
 
     @possible_tags = Episode.where(podcast_id: @podcast)
 
@@ -41,6 +44,10 @@ class PodcastsController < ApplicationController
 
   def find_episode
     @episodes = Episode.where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
+  end
+
+  def set_tag
+    @tag = params[:tag]
   end
 end
 

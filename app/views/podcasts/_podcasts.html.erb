@@ -1,18 +1,24 @@
 <div class="js_ajax_container">
+  <% unless @tag.blank? %>
+    <h3 class="sub_title">
+      <%= "Search for ##{@tag}"%>
+      <%= link_to "Clear", podcasts_path, class: "links", remote: true %>
+    </h3>
+  <% end %>
   <ul class="cf">
     <% @podcasts.each do |podcast| %>
-        <%= link_to podcast_path(podcast) do %>
-            <li>
-              <%= image_tag(podcast.thumbnail.url(:medium))%>
-              <div class="podcast_overview">
-                <h2><%= podcast.title %></h2>
-                <p class="episode_count">
-
-                </p>
-              </div>
-            </li>
-        <% end %>
+      <%= link_to podcast_path(podcast) do %>
+        <li>
+          <%= image_tag(podcast.thumbnail.url(:medium))%>
+          <div class="podcast_overview">
+            <h2><%= podcast.title %></h2>
+            <p class="episode_count">
+              <%= pluralize( podcast.episodes_count, "Episode") %>
+            </p>
+          </div>
+        </li>
+      <% end %>
     <% end %>
   </ul>
-  <%=   will_paginate @podcasts, previous_label: "Previous", next_label: "Next" %>
+  <%= will_paginate @podcasts, previous_label: "Previous", next_label: "Next" %>
 </div>

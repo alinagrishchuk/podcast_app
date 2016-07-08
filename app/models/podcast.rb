@@ -1,7 +1,4 @@
 class Podcast < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-
   include SearchablePodcast
 
   devise :database_authenticatable, :registerable,
@@ -27,7 +24,7 @@ class Podcast < ActiveRecord::Base
     where("id in (#{podcast_ids})", name: name)
   end
 
-  def self.include_episode_counts
+  def self.include_episodes_count
     joins(
       %{ LEFT OUTER JOIN (
            SELECT e.podcast_id, count(*) as episodes_count
