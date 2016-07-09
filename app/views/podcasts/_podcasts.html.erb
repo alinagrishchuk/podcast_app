@@ -11,7 +11,7 @@
         <li>
           <%= image_tag(podcast.thumbnail.url(:medium))%>
           <div class="podcast_overview">
-            <h2><%= podcast.title %></h2>
+            <h2><%= truncate(podcast.title, length: 40) %></h2>
             <p class="episode_count">
               <%= pluralize( podcast.episodes_count, "Episode") %>
             </p>

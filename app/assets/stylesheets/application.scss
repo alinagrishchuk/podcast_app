@@ -4,6 +4,12 @@ $dark: #2C3135;
 $light: #EDEFF5;
 $normal: #9ba4ac;
 
+$mobile-small:	240px;
+$mobile-large:	320px;
+$tablet-small:	480px;
+$tablet-large:	768px;
+$screen-small:	1024px;
+$screen-large:	1280px;
 
 em {
   color: $highlight
@@ -236,7 +242,7 @@ textarea {
 /******************************* search form */
 .search-form {
   margin-bottom: 2.5rem;
-  height: 2.5rem;
+  min-height: 2.5rem;
   text-align: center;
   margin-top: 2rem;
 
@@ -261,12 +267,18 @@ textarea {
     &:hover {
       background: $normal;
     }
+    @media screen and (max-width: $tablet-large) {
+      width: 100%;
+    }
   }
 
   /********** with typeahead.js  */
 
   span.twitter-typeahead {
     width: 60%;
+    @media screen and (max-width: $tablet-large) {
+      width: 100%;
+    }
   }
 
   #search.tt-input {
@@ -302,7 +314,6 @@ textarea {
   .tt-suggestion.tt-cursor,.tt-suggestion:hover {
     color: #fff;
     background-color: #0097cf;
-
   }
 
   .tt-suggestion p {
@@ -366,6 +377,9 @@ textarea {
 .podcasts_banner {
   background-image: image_url("podcasts_banner.jpg");
   margin-bottom: 4rem;
+  @media screen and (max-width: $tablet-large) {
+    margin-bottom: 2rem;
+  }
 }
 
 .sign_up_banner {

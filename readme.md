@@ -22,7 +22,7 @@ https://podcast-application.herokuapp.com/
 - CRUD for podcast episodes
 - Image uploading 
 - MP3 uploading
-- store assets on Cloudinary & Dropbox
+- Store assets on Cloudinary & Dropbox
 - Launch application live on Heroku
 - Search podcast by title or tag
 - Search episode by title or tag

@@ -6,7 +6,7 @@
     margin: 0;
     li {
       width: 23%;
-      min-height: 28rem;
+      min-height: 17rem;
       float: left;
       margin: 0 1% 2rem 1%;
       -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
@@ -40,6 +40,14 @@
             color: $highlight;
           }
         }
+      }
+      @media screen and (max-width: $tablet-small) {
+        width: 100%;
+        min-height: 15rem;
+      }
+      @media screen and (min-width: $tablet-small) and (max-width: $tablet-large) {
+        width: 48%;
+        min-height: 20rem;
       }
     }
   }
