@@ -11,7 +11,7 @@ class PodcastsController < ApplicationController
       @podcasts = Podcast.all
       @podcasts = @podcasts.tagged_with @tag unless @tag.blank?
     else #search using just es
-      @podcasts = Podcast.search(params[:search]).paginate(page: params[:page], per_page: 4).records
+      @podcasts = Podcast.search(params[:search], page: params[:page], per_page: 4).records
     end
 
     @podcasts = @podcasts.include_episodes_count.paginate(page: params[:page], per_page: 4)
@@ -20,11 +20,9 @@ class PodcastsController < ApplicationController
   def show
     @full = params[:full] #rendering full view in container
 
-    @possible_tags = Episode.where(podcast_id: @podcast)
-
-    if @tag.blank? #filtering by tag
+    if @tag.blank?
       @episodes = Episode.where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
-    else
+    else #filtering by tag
       @episodes = Episode.tagged_with(params[:tag]).where(podcast_id: @podcast).all.paginate(page: params[:page], per_page: 4)
     end
   end

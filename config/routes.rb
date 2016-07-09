@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'search/episodes', as: :episodes_search
+  get 'search/autocomplete_podcasts'
 
   devise_for :podcasts, :controllers => { :registrations => :registrations }
   get 'welcome/index'

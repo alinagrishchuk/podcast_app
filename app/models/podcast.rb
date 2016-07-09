@@ -1,13 +1,17 @@
 class Podcast < ActiveRecord::Base
-  include SearchablePodcast
+  searchkick text_middle: [:title], autocomplete: ['title'], searchable: ['title']
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
   mount_uploader :thumbnail, PictureUploader
   has_many :episodes
 
+
   default_scope -> { order('created_at DESC') }
+
+  def search_data
+    as_json only: [:title]
+  end
 
   def tags
     Episode.unscoped.
@@ -33,19 +37,4 @@ class Podcast < ActiveRecord::Base
     select("COALESCE(ep.episodes_count,0) as episodes_count, podcasts.*")
   end
 
-  def self.search_by_title(term)
-    where('title like ?', "#{term}%")
-  end
-
-  def self.full_search(term)
-    where('title like ?', "#{term}%")
-  end
-
-  #using sunspot ful-text search
-  #searchable do
-  #  text :title
-  #  text :episodes do
-  #    episodes.map { |episode| episode.title }
-  #  end
-  #end
 end

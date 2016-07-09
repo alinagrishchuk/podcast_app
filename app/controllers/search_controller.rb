@@ -7,4 +7,10 @@ class SearchController < ApplicationController
         paginate(page: params[:page], per_page: 4)
     end
   end
+
+  def autocomplete_podcasts
+    search = params[:search] || "*"
+    render json: Podcast.search(search, fields: [{title: :text_middle}], limit: 3).map(&:title)
+  end
 end
+

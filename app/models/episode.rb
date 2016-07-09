@@ -38,5 +38,4 @@ class Episode < ActiveRecord::Base
     Tag.find_by(name: name).episodes
   end
 
-
 end

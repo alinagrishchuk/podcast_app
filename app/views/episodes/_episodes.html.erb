@@ -12,7 +12,7 @@
             <div class="links pull-right">
               <h5>Tags:</h5>
               <% episode.tags.each do |t| %>
-                  <%= link_to t.name, podcast_path(@podcast, tag: t.name) %>
+                <%= link_to t.name, podcast_path(@podcast, tag: t.name) %>
               <% end %>
             </div>
             <% if @podcast == current_podcast %>
