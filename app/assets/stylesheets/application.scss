@@ -41,6 +41,9 @@ body {
 .wrapper_skinny {
   width: 60%;
   margin: 0 auto;
+  @media screen and (max-width: $tablet-small) {
+    width: 75%;
+  }
 }
 
 .responsive_break {
@@ -63,6 +66,29 @@ body {
   clear: both;
 }
 
+@mixin phone-only {
+  @media screen and (max-width: $tablet-small) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: $tablet-small+1) and (max-width: $tablet-large) {
+    @content;
+  }
+}
+
+@mixin tablet-small {
+  @media screen and (max-width: $tablet-small) {
+    @content;
+  }
+}
+
+@mixin tablet-large {
+  @media screen and (max-width: $tablet-large) {
+    @content;
+  }
+}
 
 /******************************* components */
 
@@ -267,7 +293,7 @@ textarea {
     &:hover {
       background: $normal;
     }
-    @media screen and (max-width: $tablet-large) {
+    @include tablet-large {
       width: 100%;
     }
   }

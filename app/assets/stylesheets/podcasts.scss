@@ -41,11 +41,11 @@
           }
         }
       }
-      @media screen and (max-width: $tablet-small) {
+      @include phone-only {
         width: 100%;
         min-height: 15rem;
       }
-      @media screen and (min-width: $tablet-small) and (max-width: $tablet-large) {
+      @include tablet-only {
         width: 48%;
         min-height: 20rem;
       }
@@ -63,12 +63,18 @@
       font-weight: 300;
       color: $white;
       margin: 0 0 .5rem 0;
+      @include tablet-small {
+        font-size: 1.2rem;
+      }
     }
     .description {
       width: 85%;
       line-height: 1.75;
       margin: 0 auto 2rem auto;
       color: lighten($dark, 20%);
+      @include tablet-small {
+        font-size: 0.7rem;
+      }
     }
     .subscribe_link {
       font-size: .6rem;
@@ -129,13 +135,24 @@
           float: left;
           margin-left: 1.5%;
           h2 {
+            margin: 0.1rem;
             a {
               color: $dark;
               text-decoration: none;
             }
+            @include tablet-large {
+              font-size: 1.1rem;
+              margin-bottom: 0.5rem;
+            }
+            @include tablet-small {
+              font-size: 1rem;
+            }
           }
           .description {
             color: lighten($dark, 25%);
+            @include tablet-large {
+              display: none;
+            }
           }
           .authorized_links {
             font-weight: 700;
