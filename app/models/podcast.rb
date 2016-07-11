@@ -1,18 +1,17 @@
 class Podcast < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
 
-  searchkick text_middle: [:title], autocomplete: ['title'], searchable: ['title']
-
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  mount_uploader :thumbnail, PictureUploader
-
   has_many :episodes, dependent: :destroy
 
   validates :title,     presence: true
   validates :itunes,    url: true
   validates :stitcher,  url: true
   validates :podbay,    url: true
+
+  searchkick text_middle: [:title], autocomplete: ['title'], searchable: ['title']
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  mount_uploader :thumbnail, PictureUploader
 
   def search_data
     as_json only: [:title]
