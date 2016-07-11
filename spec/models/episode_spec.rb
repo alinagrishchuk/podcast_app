@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Episode, type: :model do
-  let(:podcast) { create(:podcast)}
+  let(:podcast) { create(:podcast) }
   before { @episode = build(:episode, podcast: podcast) }
   subject { @episode }
 

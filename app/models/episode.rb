@@ -7,12 +7,7 @@ class Episode < ActiveRecord::Base
   mount_uploader :episode_thumbnail, PictureUploader
   has_attached_file     :mp3,
                         :storage => :dropbox,
-                        :dropbox_credentials => { app_key: ENV['APP_KEY'],
-                                                  app_secret: ENV['APP_SECRET'],
-                                                  access_token: ENV['ACCESS_TOKEN'],
-                                                  access_token_secret: ENV['ACCESS_TOKEN_SECRET'],
-                                                  user_id: ENV['USER_ID'],
-                                                  access_type: 'app_folder'},
+                        :dropbox_credentials => Rails.root.join('config/dropbox.yml'),
                         :path => "episodes/mp3/:id/:id_:filename"
 
   validates_attachment  :mp3,
