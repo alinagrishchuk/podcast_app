@@ -13,7 +13,6 @@ describe "adding podcast" do
     expect(page).to have_content("Podcast title")
     expect(page).to have_field('Title', with: 'Podcast title')
     expect(page).to have_field('Email', with: 'email@example.com')
-
   end
 
 end
