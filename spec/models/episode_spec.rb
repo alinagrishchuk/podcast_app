@@ -15,9 +15,9 @@ RSpec.describe Episode, type: :model do
     it { should_not be_valid }
   end
 
-  describe  "should create tag by string" do
+  describe  "when set tags by string" do
     let(:tags){ "tag#1, tag#2, tag#3" }
-    let(:episode){ build(:episode, podcast: podcast) }
+    let(:episode){ build(:episode) }
 
     before do
       episode.all_tags = tags
@@ -25,7 +25,20 @@ RSpec.describe Episode, type: :model do
     end
 
     specify { expect(episode.all_tags).to eq tags }
-    it { expect(episode.tags.count).to eq 3 }
+    specify { expect(episode.tags.count).to eq 3 }
   end
 
+  describe "find episodes by tag name" do
+    let(:tag1){'tag#1'}
+    let!(:empty_episode){ create(:episode) }
+    let!(:tagged_episode){ create(:episode, title:"tagged",all_tags: "#{tag1}, tag#2") }
+
+    it "should return 0 episode for not existing tag" do
+      expect(Episode.tagged_with("NotExist").count).to eq 0
+    end
+
+    it "should return tagged episodes" do
+      expect(Episode.tagged_with(tag1).map(&:title)).to eq(["tagged"])
+    end
+  end
 end

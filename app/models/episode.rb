@@ -30,7 +30,7 @@ class Episode < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
 
   def self.tagged_with(name)
-    Tag.find_by(name: name).episodes
+    Tag.find_by(name: name).try(:episodes) || []
   end
 
 end
