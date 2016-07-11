@@ -26,7 +26,7 @@ RSpec.describe Podcast, type: :model do
     end
   end
 
-  describe "should calculate episodes count" do
+  describe "calculate episodes count" do
     let! (:podcast_without_episodes) { create(:podcast) }
     let! (:podcast_with_episodes) { create(:podcast_with_episodes_and_tags) }
 
@@ -58,7 +58,24 @@ RSpec.describe Podcast, type: :model do
       expect(Podcast.tagged_with(tag).count).to eq 1
       expect(Podcast.tagged_with(tag).map(&:title)).to eq(["tagged"])
     end
+  end
 
+  describe "know its episodes tag" do
+    let (:tag) {'tag1, tag2'}
+    let!(:empty_podcast) { create(:podcast) }
+    let!(:tagged_podcast) { create(:podcast_with_episodes_and_tags, title: "tagged", all_tags: tag) }
+
+    it "should return 0 tags for empty podcast" do
+      expect(empty_podcast.tags.map(&:name).join(',') ).to eq ''
+    end
+
+    it "should return list of tags" do
+      expect(tagged_podcast.tags.map(&:name).join(', ') ).to eq  tag
+    end
+
+    it "should calc count of each tags" do
+      expect(tagged_podcast.tags.find{|t| t.name == 'tag1'}[:count]).to eq 1
+    end
   end
 
 end
