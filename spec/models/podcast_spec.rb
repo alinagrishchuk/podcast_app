@@ -4,23 +4,43 @@ RSpec.describe Podcast, type: :model do
   before { @podcast = FactoryGirl.create(:podcast) }
   subject { @podcast }
 
-  it { should respond_to(:title) }
-  it { should respond_to(:description) }
-  it { should respond_to(:itunes) }
-  it { should respond_to(:stitcher) }
-  it { should respond_to(:podbay) }
-  it { should respond_to(:episodes) }
+  describe "check validation of record" do
+    it { should respond_to(:title) }
+    it { should respond_to(:description) }
+    it { should respond_to(:itunes) }
+    it { should respond_to(:stitcher) }
+    it { should respond_to(:podbay) }
+    it { should respond_to(:episodes) }
 
-  it "fails validation with not url reference" do
-    @podcast.itunes   = 'it is not url'
-    @podcast.stitcher = 'it is not url'
-    @podcast.podbay   = 'it is not url'
+    it "fails validation with not url reference" do
+      @podcast.itunes   = 'it is not url'
+      @podcast.stitcher = 'it is not url'
+      @podcast.podbay   = 'it is not url'
 
-    should_not be_valid
+      should_not be_valid
 
-    expect(@podcast.errors[:itunes].size).to  eq 1
-    expect(@podcast.errors[:stitcher].size).to  eq 1
-    expect(@podcast.errors[:podbay].size).to  eq 1
+      expect(@podcast.errors[:itunes].size).to  eq 1
+      expect(@podcast.errors[:stitcher].size).to  eq 1
+      expect(@podcast.errors[:podbay].size).to  eq 1
+    end
+  end
+
+  describe "should calculate episodes count" do
+    let! (:podcast_without_episodes) { create(:podcast) }
+    let! (:podcast_with_episodes) { create(:podcast) }
+    let! (:episode) { create(:episode, podcast: podcast_with_episodes) }
+
+    specify { expect(Podcast).to respond_to(:include_episodes_count) }
+
+    it "should return 0 episode" do
+      expect(Podcast.include_episodes_count.
+        find(podcast_without_episodes.id).episodes_count).to eq 0
+    end
+
+    it "should return 1 episode" do
+      expect(Podcast.include_episodes_count.
+        find(podcast_with_episodes.id).episodes_count).to eq 1
+    end
   end
 
 end

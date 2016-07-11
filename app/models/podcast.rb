@@ -7,7 +7,7 @@ class Podcast < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   mount_uploader :thumbnail, PictureUploader
 
-  has_many :episodes
+  has_many :episodes, dependent: :destroy
 
   validates :title,     presence: true
   validates :itunes,    url: true
