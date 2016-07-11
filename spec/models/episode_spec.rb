@@ -8,8 +8,7 @@ RSpec.describe Episode, type: :model do
   it { should respond_to(:title) }
   it { should respond_to(:description) }
   it { should respond_to(:podcast) }
-
-  specify { expect(@episode.podcast).to eq podcast}
+  it { expect(@episode.podcast).to eq podcast}
 
   describe "when podcast_id is not present" do
     before { @episode.podcast_id = nil }
@@ -26,7 +25,7 @@ RSpec.describe Episode, type: :model do
     end
 
     specify { expect(episode.all_tags).to eq tags }
-    specify { expect(episode.tags.count).to eq 3 }
+    it { expect(episode.tags.count).to eq 3 }
   end
 
 end

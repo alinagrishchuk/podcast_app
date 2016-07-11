@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :episode do
-    title "MyString"
-    description "MyText"
+    title "Episode title"
+    description "Episode description"
+    all_tags ''
     podcast
   end
 end
