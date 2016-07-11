@@ -1,7 +1,8 @@
 class Episode < ActiveRecord::Base
   include SearchableEpisodes
 
-  default_scope -> { includes(:tags).order('created_at DESC') }
+  default_scope -> { includes(:tags).order('episodes.created_at DESC') }
+  scope :tagged_with,-> (name) { joins(:tags).merge(Tag.with_name(name)) }
 
   belongs_to :podcast
 
@@ -29,8 +30,8 @@ class Episode < ActiveRecord::Base
     tags.map(&:name).join(', ')
   end
 
-  def self.tagged_with(name)
-    Tag.find_by(name: name).try(:episodes) || []
+  def self.grouped_by_podcast
+    unscoped.group(:podcast_id).select("COUNT(*) AS count_all, podcast_id AS podcast_id")
   end
-
 end
+

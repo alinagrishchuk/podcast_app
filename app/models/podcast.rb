@@ -1,5 +1,5 @@
 class Podcast < ActiveRecord::Base
-  default_scope -> { order('created_at DESC') }
+  default_scope -> { order('podcasts.created_at DESC') }
 
   has_many :episodes, dependent: :destroy
 
@@ -18,11 +18,7 @@ class Podcast < ActiveRecord::Base
   end
 
   def tags
-    Episode.unscoped.
-      where(podcast_id: self.id).
-      joins(:tags).
-      group('tags.name').
-      select('tags.name , count(episodes.id) as count')
+    Tag.usage.where("episodes.podcast_id = #{self.id}")
   end
 
   def self.tagged_with name

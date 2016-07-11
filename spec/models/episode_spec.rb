@@ -28,7 +28,7 @@ RSpec.describe Episode, type: :model do
     specify { expect(episode.tags.count).to eq 3 }
   end
 
-  describe "find episodes by tag name" do
+  describe "when find episodes by tag name" do
     let(:tag1){'tag#1'}
     let!(:empty_episode){ create(:episode) }
     let!(:tagged_episode){ create(:episode, title:"tagged",all_tags: "#{tag1}, tag#2") }

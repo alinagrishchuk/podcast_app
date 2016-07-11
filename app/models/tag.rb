@@ -5,6 +5,8 @@ class Tag < ActiveRecord::Base
   has_many :taggings
   has_many :episodes, through: :taggings
 
+  scope :with_name, -> (name) { where(name: name) }
+
   def self.usage
     joins(:episodes).
     group('tags.name').
