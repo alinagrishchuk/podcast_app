@@ -41,4 +41,47 @@ RSpec.describe "Podcasts", type: :request do
       end
     end
   end
+
+  describe "when visit podcast page"  do
+    let(:tags) { ["tag#1", "tag#2", "tag#3"] }
+    let(:title) { "tagged" }
+    let!(:podcast){ create(:podcast_with_episodes_and_tags,
+                       title: title,
+                       all_tags: tags.join(", "),
+                       episodes_count: 10,
+                       podbay: '') }
+    before do
+      visit  podcast_path(podcast)
+    end
+
+    it "should display banner"  do
+      should have_selector('#podcast_banner')
+      within '#podcast_banner' do
+        should have_selector('h1',text: podcast.title)
+        should have_link('', href: podcast.stitcher)
+        should have_link('', href: podcast.itunes)
+        should_not have_link('', href: podcast.podbay)
+      end
+    end
+
+    it "should have tags links with its count" do
+      within '.main-tags .links' do
+        tags.each do |tag|
+          should have_link("##{tag} 1",podcasts_path )
+        end
+      end
+    end
+
+    it "should display breadcrumb" do
+      should have_selector "#breadcrumb"
+    end
+
+    it "should display episodes list" do
+      should have_selector('#episodes')
+
+       within '#episodes.js_ajax_container' do
+         should have_selector('li', count: 4)
+       end
+    end
+  end
 end

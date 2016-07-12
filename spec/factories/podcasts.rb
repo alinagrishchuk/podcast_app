@@ -8,9 +8,9 @@ FactoryGirl.define do
     password_confirmation 'foobar12'
     title
     description           'description of podcast'
-    itunes                'http://localhost/'
-    stitcher              'http://localhost/'
-    podbay                'http://localhost/'
+    itunes                'https://www.apple.com/ru/itunes/'
+    stitcher              'https://www.stitcher.com/'
+    podbay                'https://podbay.fm/'
 
     factory :podcast_with_episodes_and_tags do
       transient do
