@@ -4,9 +4,9 @@ class Podcast < ActiveRecord::Base
   has_many :episodes, dependent: :destroy
 
   validates :title,     presence: true
-  validates :itunes,    url: true
-  validates :stitcher,  url: true
-  validates :podbay,    url: true
+  validates :itunes,    url: true, allow_blank: true
+  validates :stitcher,  url: true, allow_blank: true
+  validates :podbay,    url: true, allow_blank: true
 
   searchkick text_middle: [:title], autocomplete: ['title'], searchable: ['title']
   devise :database_authenticatable, :registerable,
@@ -28,7 +28,7 @@ class Podcast < ActiveRecord::Base
     where("id in (#{podcast_ids})", name: name)
   end
 
-  def self.include_episodes_count
+  def self.include_episodes_count_old
     joins(
       %{ LEFT OUTER JOIN (
            SELECT e.podcast_id, count(*) as episodes_count
@@ -37,4 +37,10 @@ class Podcast < ActiveRecord::Base
     select("COALESCE(ep.episodes_count,0) as episodes_count, podcasts.*")
   end
 
+  def self.include_episodes_count
+    joins(
+      %{ LEFT OUTER JOIN ( #{Episode.grouped_by_podcast.to_sql} ) ep
+           ON ep.podcast_id = podcasts.id }).
+      select("COALESCE(ep.count_all,0) as episodes_count, podcasts.*")
+  end
 end

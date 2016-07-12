@@ -3,6 +3,7 @@ require "rails_helper"
 describe "adding podcast" do
   it "allows a user to create podcast" do
     visit new_podcast_registration_path
+
     fill_in 'Title', with: 'Podcast title'
     fill_in 'Email', with: 'email@example.com'
     fill_in 'Password', with: '12345678'

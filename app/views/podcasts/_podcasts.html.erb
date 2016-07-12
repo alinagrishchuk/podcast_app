@@ -7,7 +7,7 @@
   <% end %>
   <ul class="cf">
     <% @podcasts.each do |podcast| %>
-      <%= link_to podcast_path(podcast) do %>
+      <%= link_to podcast_path(podcast),id: dom_id(podcast) do %>
         <li>
           <%= image_tag(podcast.thumbnail.url(:medium))%>
           <div class="podcast_overview">
