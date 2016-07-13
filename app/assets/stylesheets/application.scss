@@ -181,6 +181,8 @@ body {
   background: $light;
   border: 1px solid darken($light, 5%);
   margin-top: .5rem;
+  display: inline-block;
+  margin-right: 1rem;
 
   span {
     font-size: .6rem;

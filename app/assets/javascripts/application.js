@@ -15,15 +15,3 @@
 //= require typeahead.jquery.min
 //= require turbolinks
 //= require_tree .
-
-$('#search.typeahead').typeahead({
-highlight: true
-    },
-    {
-        name: 'podcast',
-        source: function(query, syncResults, asyncResults) {
-            $.get('search/autocomplete_podcasts?search=' + query, function(data) {
-                asyncResults(data);
-            });
-        }
-    })
